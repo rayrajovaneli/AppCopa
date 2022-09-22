@@ -72,6 +72,7 @@ class LoginView: UIViewController {
         textField.backgroundColor = UIColor(red: 0.939, green: 0.939, blue: 0.939, alpha: 1)
         textField.clipsToBounds = false
         textField.layer.cornerRadius = 8
+        textField.isHidden = true
         return textField
     }()
     
@@ -81,8 +82,23 @@ class LoginView: UIViewController {
         label.text = "E-mail"
         label.textColor = UIColor(red: 0.339, green: 0.339, blue: 0.339, alpha: 1)
         label.font = UIFont(name: "Inter-Bold", size: 15)
+        label.adjustsFontSizeToFitWidth = true
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
+    
+    lazy var emailStackView: UIStackView = {
+            let stackView = UIStackView(arrangedSubviews: [emailLabel, emailTextField])
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.spacing = 6
+            stackView.axis = .vertical
+            stackView.backgroundColor = UIColor(red: 0.939, green: 0.939, blue: 0.939, alpha: 1)
+            stackView.layer.borderColor = UIColor(red: 0.939, green: 0.939, blue: 0.939, alpha: 1).cgColor
+            stackView.layer.borderWidth = 1
+            stackView.layer.cornerRadius = 8
+            stackView.isLayoutMarginsRelativeArrangement = true
+            return stackView
+        }()
     
     let passwordTextField: UITextField = {
         let textField = UITextField()
@@ -90,6 +106,7 @@ class LoginView: UIViewController {
         textField.backgroundColor = UIColor(red: 0.939, green: 0.939, blue: 0.939, alpha: 1)
         textField.clipsToBounds = false
         textField.layer.cornerRadius = 8
+        textField.isHidden = true
         return textField
     }()
     
@@ -99,8 +116,23 @@ class LoginView: UIViewController {
         label.text = "Senha"
         label.textColor = UIColor(red: 0.339, green: 0.339, blue: 0.339, alpha: 1)
         label.font = UIFont(name: "Inter-Bold", size: 15)
+        label.adjustsFontSizeToFitWidth = true
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
+    
+    lazy var passwordStackView: UIStackView = {
+            let stackView = UIStackView(arrangedSubviews: [passwordLabel, passwordTextField])
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            stackView.spacing = 6
+            stackView.axis = .vertical
+            stackView.backgroundColor = UIColor(red: 0.939, green: 0.939, blue: 0.939, alpha: 1)
+            stackView.layer.borderColor = UIColor(red: 0.939, green: 0.939, blue: 0.939, alpha: 1).cgColor
+            stackView.layer.borderWidth = 1
+            stackView.layer.cornerRadius = 8
+            stackView.isLayoutMarginsRelativeArrangement = true
+            return stackView
+        }()
     
     let forgotPasswordLabel: UILabel = {
         let label = UILabel()
@@ -144,7 +176,7 @@ class LoginView: UIViewController {
         view.backgroundColor = .white
         addSubview()
         addConstraints()
-        
+        addTargets()
     }
     
     func addSubview(){
@@ -154,14 +186,20 @@ class LoginView: UIViewController {
         self.view.addSubview(coup)
         self.view.addSubview(loginButton)
         self.view.addSubview(registerButton)
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(emailLabel)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(passwordLabel)
+        self.view.addSubview(emailStackView)
+        self.view.addSubview(passwordStackView)
         self.view.addSubview(forgotPasswordLabel)
         self.view.addSubview(enterButton)
         self.view.addSubview(warningLabel)
         self.view.addSubview(headerImage)
+    }
+    
+    func addTargets(){
+        let emailStackViewTap = UITapGestureRecognizer(target: self, action: #selector(emailStackViewTapped))
+        emailStackView.addGestureRecognizer(emailStackViewTap)
+        
+        let passwordStackViewTap = UITapGestureRecognizer(target: self, action: #selector(passwordtStackViewTapped))
+        passwordStackView.addGestureRecognizer(passwordStackViewTap)
     }
     
     func addConstraints(){
@@ -195,32 +233,27 @@ class LoginView: UIViewController {
         registerButton.heightAnchor.constraint(equalToConstant: 53).isActive = true
         registerButton.widthAnchor.constraint(equalToConstant: 162).isActive = true
         
-        emailTextField.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 27).isActive = true
-        emailTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-        emailTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
-        emailTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        emailStackView.topAnchor.constraint(equalTo: loginButton.bottomAnchor, constant: 27).isActive = true
+        emailStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        emailStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
+        emailStackView.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
-        emailLabel.topAnchor.constraint(equalTo: emailTextField.topAnchor, constant: 12).isActive = true
-        emailLabel.leadingAnchor.constraint(equalTo: emailTextField.leadingAnchor, constant: 10).isActive = true
+        emailLabel.leadingAnchor.constraint(equalTo: emailStackView.leadingAnchor, constant: 10).isActive = true
         
-        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 27).isActive = true
-        passwordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-        passwordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
-        passwordTextField.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        passwordStackView.topAnchor.constraint(equalTo: emailStackView.bottomAnchor, constant: 27).isActive = true
+        passwordStackView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        passwordStackView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
+        passwordStackView.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
-        passwordLabel.topAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: 12).isActive = true
-        passwordLabel.leadingAnchor.constraint(equalTo: passwordTextField.leadingAnchor, constant: 10).isActive = true
-        
-        forgotPasswordLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        forgotPasswordLabel.topAnchor.constraint(equalTo: passwordLabel.bottomAnchor, constant: 30).isActive = true
+        passwordLabel.leadingAnchor.constraint(equalTo: passwordStackView.leadingAnchor, constant: 10).isActive = true
         
         enterButton.heightAnchor.constraint(equalToConstant: 58).isActive = true
         enterButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
         enterButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -33).isActive = true
-        enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 65).isActive = true
+        enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 40).isActive = true
         
         warningLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
-        warningLabel.topAnchor.constraint(equalTo: enterButton.bottomAnchor, constant: 25).isActive = true
+        warningLabel.topAnchor.constraint(equalTo: enterButton.bottomAnchor, constant: 15).isActive = true
         
         headerImage.topAnchor.constraint(equalTo: warningLabel.bottomAnchor, constant: 15).isActive = true
         headerImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
@@ -230,3 +263,16 @@ class LoginView: UIViewController {
     
 }
 
+extension LoginView: UITextFieldDelegate {
+    @objc func emailStackViewTapped() {
+            emailLabel.font = UIFont(name: "Inter-Bold", size: 10)
+            emailTextField.isHidden = false
+            emailTextField.becomeFirstResponder()
+        }
+    
+    @objc func passwordtStackViewTapped() {
+            passwordLabel.font = UIFont(name: "Inter-Bold", size: 10)
+            passwordTextField.isHidden = false
+            passwordTextField.becomeFirstResponder()
+        }
+}

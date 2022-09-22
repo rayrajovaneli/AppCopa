@@ -96,8 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				C69B57FE28DB8B8C00232CB0 /* ViewModel */,
-				C69B57FD28DB8B8200232CB0 /* Model */,
 				C69B57FC28DB8B6D00232CB0 /* View */,
+				C69B57FD28DB8B8200232CB0 /* Model */,
 			);
 			path = Register;
 			sourceTree = "<group>";
