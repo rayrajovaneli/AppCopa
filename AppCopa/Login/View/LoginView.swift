@@ -177,7 +177,16 @@ class LoginView: UIViewController {
         addSubview()
         addConstraints()
         addTargets()
+        
+        registerButton.addTarget(nil, action: #selector(registerTapped), for: .touchUpInside)
     }
+    
+    @objc func registerTapped() {
+        let callRegister = RegisterView()
+        callRegister.modalPresentationStyle = .fullScreen
+        present(callRegister, animated: false)
+    }
+
     
     func addSubview(){
         self.view.addSubview(titleLabel)
@@ -246,6 +255,9 @@ class LoginView: UIViewController {
         passwordStackView.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         passwordLabel.leadingAnchor.constraint(equalTo: passwordStackView.leadingAnchor, constant: 10).isActive = true
+        
+        forgotPasswordLabel.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 10).isActive = true
+        forgotPasswordLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
         
         enterButton.heightAnchor.constraint(equalToConstant: 58).isActive = true
         enterButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true

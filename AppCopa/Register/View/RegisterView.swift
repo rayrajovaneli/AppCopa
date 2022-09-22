@@ -195,6 +195,13 @@ class RegisterView: UIViewController {
         addSubviews()
         addConstraints()
         addTargets()
+        loginButton.addTarget(nil, action: #selector(loginTapped), for: .touchUpInside)
+    }
+    
+    @objc func loginTapped() {
+        let callLogin = LoginView()
+        callLogin.modalPresentationStyle = .fullScreen
+        present(callLogin, animated: false)
     }
     
     func addSubviews(){
