@@ -189,6 +189,7 @@ class LoginView: UIViewController {
         
         registerButton.addTarget(nil, action: #selector(registerTapped), for: .touchUpInside)
         seePasswordButton.addTarget(nil, action: #selector(seePassword), for: .touchUpInside)
+        enterButton.addTarget(nil, action: #selector(enterTapped), for: .touchUpInside)
     }
     
     func addSubview(){

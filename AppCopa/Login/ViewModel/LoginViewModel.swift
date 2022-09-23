@@ -39,6 +39,12 @@ extension LoginView: UITextFieldDelegate {
         }
     }
     
+    @objc func enterTapped() {
+        let callHome = HomeView()
+        callHome.modalPresentationStyle = .fullScreen
+        present(callHome, animated: false)
+    }
+    
     @objc func registerTapped() {
         let callRegister = RegisterView()
         callRegister.modalPresentationStyle = .fullScreen
