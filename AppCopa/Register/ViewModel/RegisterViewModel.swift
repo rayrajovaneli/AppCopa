@@ -9,6 +9,16 @@ import UIKit
 
 extension RegisterView: UITextFieldDelegate{
     
+    @objc func seePassword(_ sender: UIButton){
+        passwordTextField.isSecureTextEntry.toggle()
+        
+        if passwordTextField.isSecureTextEntry {
+            seePasswordButton.setImage(UIImage(systemName: "eye.slash" ), for: .normal)
+        } else {
+            seePasswordButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
+    }
+    
     func addTargets(){
         let emailStackViewTap = UITapGestureRecognizer(target: self, action: #selector(emailStackViewTapped))
         emailStackView.addGestureRecognizer(emailStackViewTap)
