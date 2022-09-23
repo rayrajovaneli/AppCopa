@@ -196,12 +196,7 @@ class RegisterView: UIViewController {
         addConstraints()
         addTargets()
         loginButton.addTarget(nil, action: #selector(loginTapped), for: .touchUpInside)
-    }
-    
-    @objc func loginTapped() {
-        let callLogin = LoginView()
-        callLogin.modalPresentationStyle = .fullScreen
-        present(callLogin, animated: false)
+        enterButton.addTarget(nil, action: #selector(enterTapped), for: .touchUpInside)
     }
     
     func addSubviews(){
@@ -216,19 +211,6 @@ class RegisterView: UIViewController {
         self.view.addSubview(warningLabel)
         self.view.addSubview(headerImage)
     }
-    
-    func addTargets(){
-        let emailStackViewTap = UITapGestureRecognizer(target: self, action: #selector(emailStackViewTapped))
-        emailStackView.addGestureRecognizer(emailStackViewTap)
-        
-        let passwordStackViewTap = UITapGestureRecognizer(target: self, action: #selector(passwordtStackViewTapped))
-        passwordStackView.addGestureRecognizer(passwordStackViewTap)
-        
-        let cepStackViewTap = UITapGestureRecognizer(target: self, action: #selector(cepStackViewTapped))
-        cepStackView.addGestureRecognizer(cepStackViewTap)
-    }
-
-
     
     func addConstraints(){
         titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
@@ -286,22 +268,3 @@ class RegisterView: UIViewController {
     }
 }
 
-extension RegisterView: UITextFieldDelegate{
-    @objc func emailStackViewTapped() {
-            emailLabel.font = UIFont(name: "Inter-Bold", size: 10)
-            emailTextField.isHidden = false
-            emailTextField.becomeFirstResponder()
-        }
-    
-    @objc func passwordtStackViewTapped() {
-            passwordLabel.font = UIFont(name: "Inter-Bold", size: 10)
-            passwordTextField.isHidden = false
-            passwordTextField.becomeFirstResponder()
-        }
-    
-    @objc func cepStackViewTapped() {
-            cepLabel.font = UIFont(name: "Inter-Bold", size: 10)
-            cepTextField.isHidden = false
-            cepTextField.becomeFirstResponder()
-        }
-}
