@@ -191,23 +191,6 @@ class LoginView: UIViewController {
         seePasswordButton.addTarget(nil, action: #selector(seePassword), for: .touchUpInside)
     }
     
-    @objc func seePassword(_ sender: UIButton){
-        passwordTextField.isSecureTextEntry.toggle()
-        
-        if passwordTextField.isSecureTextEntry {
-            seePasswordButton.setImage(UIImage(systemName: "eye.slash" ), for: .normal)
-        } else {
-            seePasswordButton.setImage(UIImage(systemName: "eye"), for: .normal)
-        }
-    }
-    
-    @objc func registerTapped() {
-        let callRegister = RegisterView()
-        callRegister.modalPresentationStyle = .fullScreen
-        present(callRegister, animated: false)
-    }
-
-    
     func addSubview(){
         self.view.addSubview(titleLabel)
         self.view.addSubview(flag)
@@ -222,14 +205,6 @@ class LoginView: UIViewController {
         self.view.addSubview(warningLabel)
         self.view.addSubview(headerImage)
         self.view.addSubview(seePasswordButton)
-    }
-    
-    func addTargets(){
-        let emailStackViewTap = UITapGestureRecognizer(target: self, action: #selector(emailStackViewTapped))
-        emailStackView.addGestureRecognizer(emailStackViewTap)
-        
-        let passwordStackViewTap = UITapGestureRecognizer(target: self, action: #selector(passwordtStackViewTapped))
-        passwordStackView.addGestureRecognizer(passwordStackViewTap)
     }
     
     func addConstraints(){
@@ -301,16 +276,3 @@ class LoginView: UIViewController {
     
 }
 
-extension LoginView: UITextFieldDelegate {
-    @objc func emailStackViewTapped() {
-            emailLabel.font = UIFont(name: "Inter-Bold", size: 10)
-            emailTextField.isHidden = false
-            emailTextField.becomeFirstResponder()
-        }
-    
-    @objc func passwordtStackViewTapped() {
-            passwordLabel.font = UIFont(name: "Inter-Bold", size: 10)
-            passwordTextField.isHidden = false
-            passwordTextField.becomeFirstResponder()
-        }
-}
