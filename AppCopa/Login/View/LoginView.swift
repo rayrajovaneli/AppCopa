@@ -106,6 +106,7 @@ class LoginView: UIViewController {
         textField.backgroundColor = UIColor(red: 0.939, green: 0.939, blue: 0.939, alpha: 1)
         textField.clipsToBounds = false
         textField.layer.cornerRadius = 8
+        textField.isSecureTextEntry = true
         textField.isHidden = true
         return textField
     }()
@@ -171,6 +172,14 @@ class LoginView: UIViewController {
         return image
     }()
     
+    let seePasswordButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setImage(UIImage(systemName: "eye.slash"), for: .normal)
+        button.imageView?.tintColor = .darkGray
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -179,6 +188,17 @@ class LoginView: UIViewController {
         addTargets()
         
         registerButton.addTarget(nil, action: #selector(registerTapped), for: .touchUpInside)
+        seePasswordButton.addTarget(nil, action: #selector(seePassword), for: .touchUpInside)
+    }
+    
+    @objc func seePassword(_ sender: UIButton){
+        passwordTextField.isSecureTextEntry.toggle()
+        
+        if passwordTextField.isSecureTextEntry {
+            seePasswordButton.setImage(UIImage(systemName: "eye.slash" ), for: .normal)
+        } else {
+            seePasswordButton.setImage(UIImage(systemName: "eye"), for: .normal)
+        }
     }
     
     @objc func registerTapped() {
@@ -201,6 +221,7 @@ class LoginView: UIViewController {
         self.view.addSubview(enterButton)
         self.view.addSubview(warningLabel)
         self.view.addSubview(headerImage)
+        self.view.addSubview(seePasswordButton)
     }
     
     func addTargets(){
@@ -255,6 +276,11 @@ class LoginView: UIViewController {
         passwordStackView.heightAnchor.constraint(equalToConstant: 48).isActive = true
         
         passwordLabel.leadingAnchor.constraint(equalTo: passwordStackView.leadingAnchor, constant: 10).isActive = true
+        
+        seePasswordButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
+        seePasswordButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        seePasswordButton.trailingAnchor.constraint(equalTo: passwordStackView.trailingAnchor, constant: -10).isActive = true
+        seePasswordButton.topAnchor.constraint(equalTo: passwordStackView.topAnchor, constant: 10).isActive = true
         
         forgotPasswordLabel.topAnchor.constraint(equalTo: passwordStackView.bottomAnchor, constant: 10).isActive = true
         forgotPasswordLabel.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor).isActive = true
