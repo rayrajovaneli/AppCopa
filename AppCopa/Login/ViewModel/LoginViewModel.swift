@@ -18,13 +18,13 @@ extension LoginView: UITextFieldDelegate {
     }
     
     @objc func emailStackViewTapped() {
-            emailLabel.font = UIFont(name: "Inter-Bold", size: 10)
+            emailLabel.font = UIFont(name: "KoHo-Bold", size: 12)
             emailTextField.isHidden = false
             emailTextField.becomeFirstResponder()
         }
     
     @objc func passwordtStackViewTapped() {
-            passwordLabel.font = UIFont(name: "Inter-Bold", size: 10)
+            passwordLabel.font = UIFont(name: "KoHo-Bold", size: 12)
             passwordTextField.isHidden = false
             passwordTextField.becomeFirstResponder()
         }
@@ -40,9 +40,9 @@ extension LoginView: UITextFieldDelegate {
     }
     
     @objc func enterTapped() {
-        let callHome = HomeView()
+        let callHome = TabBar()
         callHome.modalPresentationStyle = .fullScreen
-        present(callHome, animated: false)
+        present(callHome, animated: true)
     }
     
     @objc func registerTapped() {

@@ -20,6 +20,18 @@
 		C6B6DE1328D4DA6100D09B79 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6B6DE1228D4DA6100D09B79 /* SceneDelegate.swift */; };
 		C6B6DE1A28D4DA6300D09B79 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C6B6DE1928D4DA6300D09B79 /* Assets.xcassets */; };
 		C6B6DE1D28D4DA6300D09B79 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C6B6DE1B28D4DA6300D09B79 /* LaunchScreen.storyboard */; };
+		C6DB534C28E1E59400361BB3 /* Ubuntu-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6DB534728E1E59400361BB3 /* Ubuntu-Medium.ttf */; };
+		C6DB534D28E1E59400361BB3 /* Ubuntu-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6DB534828E1E59400361BB3 /* Ubuntu-Regular.ttf */; };
+		C6DB534E28E1E59400361BB3 /* Ubuntu-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6DB534928E1E59400361BB3 /* Ubuntu-Bold.ttf */; };
+		C6DB534F28E1E59400361BB3 /* KoHo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6DB534A28E1E59400361BB3 /* KoHo-Bold.ttf */; };
+		C6DB535028E1E59400361BB3 /* Ubuntu-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C6DB534B28E1E59400361BB3 /* Ubuntu-Light.ttf */; };
+		C6FBA9EB28E220B1002310CB /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBA9EA28E220B1002310CB /* TabBar.swift */; };
+		C6FBA9ED28E221BF002310CB /* AnounceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBA9EC28E221BF002310CB /* AnounceView.swift */; };
+		C6FBA9EF28E221D8002310CB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBA9EE28E221D8002310CB /* SearchView.swift */; };
+		C6FBA9F128E2257C002310CB /* AnounceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBA9F028E2257C002310CB /* AnounceViewModel.swift */; };
+		C6FBA9F328E22589002310CB /* AnounceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBA9F228E22589002310CB /* AnounceModel.swift */; };
+		C6FBA9FC28E22776002310CB /* SearchModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBA9FB28E22776002310CB /* SearchModel.swift */; };
+		C6FBAA0028E227A7002310CB /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6FBA9FF28E227A7002310CB /* SearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +50,18 @@
 		C6B6DE1928D4DA6300D09B79 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C6B6DE1C28D4DA6300D09B79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C6B6DE1E28D4DA6300D09B79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C6DB534728E1E59400361BB3 /* Ubuntu-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Medium.ttf"; sourceTree = "<group>"; };
+		C6DB534828E1E59400361BB3 /* Ubuntu-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Regular.ttf"; sourceTree = "<group>"; };
+		C6DB534928E1E59400361BB3 /* Ubuntu-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Bold.ttf"; sourceTree = "<group>"; };
+		C6DB534A28E1E59400361BB3 /* KoHo-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KoHo-Bold.ttf"; sourceTree = "<group>"; };
+		C6DB534B28E1E59400361BB3 /* Ubuntu-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Ubuntu-Light.ttf"; sourceTree = "<group>"; };
+		C6FBA9EA28E220B1002310CB /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		C6FBA9EC28E221BF002310CB /* AnounceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnounceView.swift; sourceTree = "<group>"; };
+		C6FBA9EE28E221D8002310CB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		C6FBA9F028E2257C002310CB /* AnounceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnounceViewModel.swift; sourceTree = "<group>"; };
+		C6FBA9F228E22589002310CB /* AnounceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnounceModel.swift; sourceTree = "<group>"; };
+		C6FBA9FB28E22776002310CB /* SearchModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchModel.swift; sourceTree = "<group>"; };
+		C6FBA9FF28E227A7002310CB /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +205,9 @@
 		C6B6DE0F28D4DA6100D09B79 /* AppCopa */ = {
 			isa = PBXGroup;
 			children = (
+				C6FBA9F928E22760002310CB /* Search */,
+				C6FBA9F828E225E9002310CB /* TabBar */,
+				C6FBA9F428E2258D002310CB /* Anounce */,
 				C678B09328DE1A2C003B8325 /* Home */,
 				C69B57FB28DB8B6400232CB0 /* Register */,
 				C6828D8128D4E01500DC3EF4 /* Login */,
@@ -188,8 +215,97 @@
 				C6B6DE1928D4DA6300D09B79 /* Assets.xcassets */,
 				C6B6DE1B28D4DA6300D09B79 /* LaunchScreen.storyboard */,
 				C6B6DE1E28D4DA6300D09B79 /* Info.plist */,
+				C6DB534628E1E59400361BB3 /* Fonts */,
 			);
 			path = AppCopa;
+			sourceTree = "<group>";
+		};
+		C6DB534628E1E59400361BB3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				C6DB534728E1E59400361BB3 /* Ubuntu-Medium.ttf */,
+				C6DB534828E1E59400361BB3 /* Ubuntu-Regular.ttf */,
+				C6DB534928E1E59400361BB3 /* Ubuntu-Bold.ttf */,
+				C6DB534A28E1E59400361BB3 /* KoHo-Bold.ttf */,
+				C6DB534B28E1E59400361BB3 /* Ubuntu-Light.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		C6FBA9F428E2258D002310CB /* Anounce */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9F728E225D4002310CB /* ViewModel */,
+				C6FBA9F628E225C5002310CB /* View */,
+				C6FBA9F528E225AC002310CB /* Model */,
+			);
+			path = Anounce;
+			sourceTree = "<group>";
+		};
+		C6FBA9F528E225AC002310CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9F228E22589002310CB /* AnounceModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C6FBA9F628E225C5002310CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9EC28E221BF002310CB /* AnounceView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C6FBA9F728E225D4002310CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9F028E2257C002310CB /* AnounceViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		C6FBA9F828E225E9002310CB /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9EA28E220B1002310CB /* TabBar.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		C6FBA9F928E22760002310CB /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9FE28E22793002310CB /* ViewModel */,
+				C6FBA9FD28E22785002310CB /* View */,
+				C6FBA9FA28E22768002310CB /* Model */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		C6FBA9FA28E22768002310CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9FB28E22776002310CB /* SearchModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C6FBA9FD28E22785002310CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9EE28E221D8002310CB /* SearchView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C6FBA9FE28E22793002310CB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				C6FBA9FF28E227A7002310CB /* SearchViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,8 +366,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6DB534E28E1E59400361BB3 /* Ubuntu-Bold.ttf in Resources */,
+				C6DB534D28E1E59400361BB3 /* Ubuntu-Regular.ttf in Resources */,
+				C6DB535028E1E59400361BB3 /* Ubuntu-Light.ttf in Resources */,
 				C6B6DE1D28D4DA6300D09B79 /* LaunchScreen.storyboard in Resources */,
 				C6B6DE1A28D4DA6300D09B79 /* Assets.xcassets in Resources */,
+				C6DB534F28E1E59400361BB3 /* KoHo-Bold.ttf in Resources */,
+				C6DB534C28E1E59400361BB3 /* Ubuntu-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,12 +386,19 @@
 				C6828D8628D4E05A00DC3EF4 /* LoginModel.swift in Sources */,
 				C678B09C28DE1E80003B8325 /* HomeViewModel.swift in Sources */,
 				C6828D8A28D4E08300DC3EF4 /* LoginViewModel.swift in Sources */,
+				C6FBA9EB28E220B1002310CB /* TabBar.swift in Sources */,
 				C678B09828DE1E62003B8325 /* HomeModel.swift in Sources */,
 				C678B09A28DE1E73003B8325 /* HomeView.swift in Sources */,
+				C6FBAA0028E227A7002310CB /* SearchViewModel.swift in Sources */,
 				C69B580228DB8BB000232CB0 /* RegisterViewModel.swift in Sources */,
+				C6FBA9F328E22589002310CB /* AnounceModel.swift in Sources */,
 				C69B580028DB8BA100232CB0 /* RegisterView.swift in Sources */,
 				C6B6DE1128D4DA6100D09B79 /* AppDelegate.swift in Sources */,
+				C6FBA9FC28E22776002310CB /* SearchModel.swift in Sources */,
+				C6FBA9ED28E221BF002310CB /* AnounceView.swift in Sources */,
+				C6FBA9EF28E221D8002310CB /* SearchView.swift in Sources */,
 				C6828D8828D4E07300DC3EF4 /* LoginView.swift in Sources */,
+				C6FBA9F128E2257C002310CB /* AnounceViewModel.swift in Sources */,
 				C6B6DE1328D4DA6100D09B79 /* SceneDelegate.swift in Sources */,
 				C69B580428DB8BBE00232CB0 /* RegisterModel.swift in Sources */,
 			);

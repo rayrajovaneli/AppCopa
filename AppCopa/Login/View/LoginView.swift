@@ -15,7 +15,7 @@ class LoginView: UIViewController {
         label.textAlignment = .center
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
-        label.font = UIFont(name: "Inter-Semibold", size: 20)
+        label.font = UIFont(name: "Ubuntu-Bold", size: 20)
         label.textColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -48,7 +48,7 @@ class LoginView: UIViewController {
         button.backgroundColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
         button.setTitle("Login", for: .normal)
         button.titleLabel?.textColor = .white
-        button.titleLabel?.font = UIFont(name: "Bold", size: 16)
+        button.titleLabel?.font = UIFont(name: "KoHo-Bold", size: 16)
         button.clipsToBounds = false
         button.layer.cornerRadius = 8
         return button
@@ -60,7 +60,7 @@ class LoginView: UIViewController {
         button.backgroundColor = .lightGray
         button.setTitle("Criar Conta", for: .normal)
         button.titleLabel?.textColor = .darkText
-        button.titleLabel?.font = UIFont(name: "Bold", size: 16)
+        button.titleLabel?.font = UIFont(name: "KoHo-Bold", size: 16)
         button.clipsToBounds = false
         button.layer.cornerRadius = 8
         return button
@@ -81,7 +81,7 @@ class LoginView: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "E-mail"
         label.textColor = UIColor(red: 0.339, green: 0.339, blue: 0.339, alpha: 1)
-        label.font = UIFont(name: "Inter-Bold", size: 15)
+        label.font = UIFont(name: "KoHo-Bold", size: 15)
         label.adjustsFontSizeToFitWidth = true
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -116,7 +116,7 @@ class LoginView: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Senha"
         label.textColor = UIColor(red: 0.339, green: 0.339, blue: 0.339, alpha: 1)
-        label.font = UIFont(name: "Inter-Bold", size: 15)
+        label.font = UIFont(name: "KoHo-Bold", size: 15)
         label.adjustsFontSizeToFitWidth = true
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -140,7 +140,7 @@ class LoginView: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Esqueci minha senha"
         label.textColor = UIColor(red: 0.339, green: 0.339, blue: 0.339, alpha: 1)
-        label.font = UIFont(name: "Inter-Medium", size: 16)
+        label.font = UIFont(name: "Ubuntu-Medium", size: 16)
         return label
     }()
     
@@ -149,6 +149,7 @@ class LoginView: UIViewController {
         button.backgroundColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
         button.setTitle("Entrar", for: .normal)
         button.titleLabel?.textColor = .white
+        button.titleLabel?.font = UIFont(name: "KoHo-Bold", size: 16)
         button.clipsToBounds = false
         button.layer.cornerRadius = 8
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -160,7 +161,7 @@ class LoginView: UIViewController {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "App não oficial da Copa."
         label.textColor = UIColor(red: 0.621, green: 0.621, blue: 0.621, alpha: 1)
-        label.font = UIFont(name: "Inter-Regular", size: 14)
+        label.font = UIFont(name: "Ubuntu-Regular", size: 14)
         label.textAlignment = .center
         return label
     }()

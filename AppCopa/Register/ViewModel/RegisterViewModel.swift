@@ -49,7 +49,7 @@ extension RegisterView: UITextFieldDelegate{
     }
     
     @objc func emailStackViewTapped() {
-            emailLabel.font = UIFont(name: "Inter-Bold", size: 10)
+            emailLabel.font = UIFont(name: "KoHo-Bold", size: 12)
             emailTextField.addTarget(self, action: #selector(emailText), for: .editingChanged)
             emailTextField.isHidden = false
             emailTextField.becomeFirstResponder()
@@ -57,14 +57,14 @@ extension RegisterView: UITextFieldDelegate{
         }
     
     @objc func passwordtStackViewTapped() {
-            passwordLabel.font = UIFont(name: "Inter-Bold", size: 10)
+            passwordLabel.font = UIFont(name: "KoHo-Bold", size: 12)
             passwordTextField.addTarget(self, action: #selector(passwordText), for: .editingChanged)
             passwordTextField.isHidden = false
             passwordTextField.becomeFirstResponder()
         }
     
     @objc func cepStackViewTapped() {
-            cepLabel.font = UIFont(name: "Inter-Bold", size: 10)
+            cepLabel.font = UIFont(name: "KoHo-Bold", size: 12)
             cepTextField.addTarget(self, action: #selector(cepText), for: .editingChanged)
             cepTextField.isHidden = false
             cepTextField.becomeFirstResponder()
