@@ -7,7 +7,43 @@
 
 import UIKit
 
+struct Item {
+    var imageName: String
+}
+
 class SearchView: UIViewController {
+    
+    enum Mode{
+        case view
+        case select
+    }
+    
+    var mMode: Mode = .view {
+        didSet {
+            switch mMode {
+            case .view:
+                selectButton.title = "Selecionar"
+                navigationItem.leftBarButtonItem = nil
+                collectionView.allowsMultipleSelection = false
+            case .select:
+                selectButton.title = "Cancelar"
+                navigationItem.leftBarButtonItem = removeSelectButton
+                collectionView.allowsMultipleSelection = true
+            }
+        }
+    }
+    
+    lazy var selectButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(title: "Selecionar", style: .plain, target: self, action: #selector(selectingPictures))
+        button.tintColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
+        return button
+    }()
+    
+    lazy var removeSelectButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: nil)
+        button.tintColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
+        return button
+    }()
     
     let backButton: UIButton = {
         let button = UIButton()
@@ -38,18 +74,77 @@ class SearchView: UIViewController {
         return label
     }()
     
+    let searchBar: UISearchBar = {
+       let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        searchBar.searchBarStyle = .prominent
+        searchBar.placeholder = "Digite a seleção desejada"
+        searchBar.sizeToFit()
+        searchBar.isTranslucent = false
+        return searchBar
+    }()
+    
+    
+    
+    lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 90, height: 110)
+        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 5
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.dataSource = self
+        collection.delegate = self
+        collection.register(SearchCollectionCell.self, forCellWithReuseIdentifier: "Cell")
+        collection.showsHorizontalScrollIndicator = false
+        collection.backgroundColor = .white
+        return collection
+    }()
+    
+    let searchButton: UIButton = {
+       let button = UIButton()
+        button.setTitle("Buscar", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Ubuntu-Medium", size: 24)
+        button.backgroundColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
+        button.clipsToBounds = false
+        button.layer.cornerRadius = 8
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
+    var dictionarySelectedIndexPath: [IndexPath: Bool] = [:]
+    
+    var data = ["Brasil", "França", "Inglaterra", "Argentina", "Espanha"]
+    
+    var searchCell = SearchCollectionCell()
+    
+    var items: [Item] = [Item(imageName: "figurinhaneymar"),
+                        Item(imageName: "figurinhavinicius")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        title = "Buscar figurinhas"
+        backButton.addTarget(nil, action: #selector(backButtonTapped), for: .touchUpInside)
+        searchBar.searchTextField.addTarget(nil, action: #selector(editingSearchBar), for: .editingChanged)
+        searchBar.delegate = self
+        setupBarButtonItems()
         addSubview()
         addConstraints()
-        backButton.addTarget(nil, action: #selector(backButtonTapped), for: .touchUpInside)
+    }
+    
+    private func setupBarButtonItems(){
+        navigationItem.rightBarButtonItem = selectButton
     }
     
     func addSubview(){
         view.addSubview(backButton)
         view.addSubview(searchLabel)
         view.addSubview(subtitleLabel)
+        view.addSubview(searchBar)
+        view.addSubview(collectionView)
+        view.addSubview(searchButton)
     }
     
     func addConstraints(){
@@ -63,5 +158,88 @@ class SearchView: UIViewController {
         
         subtitleLabel.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 6).isActive = true
         subtitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 27).isActive = true
+        
+        searchBar.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 30).isActive = true
+        searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 29).isActive = true
+        searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -29).isActive = true
+        
+        collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 26).isActive = true
+        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+        collectionView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+        
+        searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -55).isActive = true
+        searchButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 29).isActive = true
+        searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -29).isActive = true
+        searchButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
     }
+    
+    @objc func selectingPictures(_ sender: UIBarButtonItem){
+        mMode = mMode == .view ? .select : .view
+        
+    }
+    
+    @objc func removingPictures(_ sender: UIBarButtonItem){
+        var deleteNeededIndexPath: [IndexPath] = []
+        for (key, value) in dictionarySelectedIndexPath{
+            if value {
+                deleteNeededIndexPath.append(key)
+            }
+        }
+        
+        for i in deleteNeededIndexPath.sorted(by: { $0.item > $1.item }) {
+            items.remove(at: i.item)
+        }
+        
+        collectionView.deleteItems(at: deleteNeededIndexPath)
+        dictionarySelectedIndexPath.removeAll()
+        
+    }
+    
+    @objc func editingSearchBar(){
+        if searchBar.text == data.first {
+            searchCell.playerImage.image = UIImage(named: "figurinhavinicius")
+        } else if searchBar.text == data[3]{
+            collectionView.backgroundColor = .blue
+        } else if searchBar.text == data.last{
+            collectionView.backgroundColor = .yellow
+        } else {
+            collectionView.backgroundColor = .white
+        }
+        searchBar.reloadInputViews()
+
+    }
+    
 }
+
+extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
+
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        19
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? SearchCollectionCell
+        return cell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        switch mMode{
+        case .view:
+            let item = items[indexPath.item]
+        case .select:
+            dictionarySelectedIndexPath[indexPath] = true
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if mMode == .select{
+            dictionarySelectedIndexPath[indexPath] = false
+        }
+    }
+    
+}
+    
