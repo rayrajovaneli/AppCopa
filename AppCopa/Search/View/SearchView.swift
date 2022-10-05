@@ -7,11 +7,7 @@
 
 import UIKit
 
-struct Item {
-    var imageName: String
-}
-
-class SearchView: UIViewController {
+class SearchView: UIViewController{
     
     enum Mode{
         case view
@@ -22,28 +18,13 @@ class SearchView: UIViewController {
         didSet {
             switch mMode {
             case .view:
-                selectButton.title = "Selecionar"
-                navigationItem.leftBarButtonItem = nil
                 collectionView.allowsMultipleSelection = false
             case .select:
-                selectButton.title = "Cancelar"
-                navigationItem.leftBarButtonItem = removeSelectButton
                 collectionView.allowsMultipleSelection = true
             }
         }
     }
     
-    lazy var selectButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Selecionar", style: .plain, target: self, action: #selector(selectingPictures))
-        button.tintColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
-        return button
-    }()
-    
-    lazy var removeSelectButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: nil)
-        button.tintColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
-        return button
-    }()
     
     let backButton: UIButton = {
         let button = UIButton()
@@ -75,7 +56,7 @@ class SearchView: UIViewController {
     }()
     
     let searchBar: UISearchBar = {
-       let searchBar = UISearchBar()
+        let searchBar = UISearchBar()
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.searchBarStyle = .prominent
         searchBar.placeholder = "Digite a seleção desejada"
@@ -103,7 +84,7 @@ class SearchView: UIViewController {
     }()
     
     let searchButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("Buscar", for: .normal)
         button.titleLabel?.font = UIFont(name: "Ubuntu-Medium", size: 24)
         button.backgroundColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
@@ -114,107 +95,84 @@ class SearchView: UIViewController {
     }()
     
     var dictionarySelectedIndexPath: [IndexPath: Bool] = [:]
-    
+        
     var data = ["Brasil", "França", "Inglaterra", "Argentina", "Espanha"]
     
-    var searchCell = SearchCollectionCell()
-    
-    var items: [Item] = [Item(imageName: "figurinhaneymar"),
-                        Item(imageName: "figurinhavinicius")]
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        title = "Buscar figurinhas"
-        backButton.addTarget(nil, action: #selector(backButtonTapped), for: .touchUpInside)
-        searchBar.searchTextField.addTarget(nil, action: #selector(editingSearchBar), for: .editingChanged)
-        searchBar.delegate = self
-        setupBarButtonItems()
-        addSubview()
-        addConstraints()
-    }
-    
-    private func setupBarButtonItems(){
-        navigationItem.rightBarButtonItem = selectButton
-    }
-    
-    func addSubview(){
-        view.addSubview(backButton)
-        view.addSubview(searchLabel)
-        view.addSubview(subtitleLabel)
-        view.addSubview(searchBar)
-        view.addSubview(collectionView)
-        view.addSubview(searchButton)
-    }
-    
-    func addConstraints(){
-        backButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
-        backButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
-        backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
-        backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 27).isActive = true
-        
-        searchLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
-        searchLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 27).isActive = true
-        
-        subtitleLabel.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 6).isActive = true
-        subtitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 27).isActive = true
-        
-        searchBar.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 30).isActive = true
-        searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 29).isActive = true
-        searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -29).isActive = true
-        
-        collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 26).isActive = true
-        collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-        collectionView.heightAnchor.constraint(equalToConstant: 350).isActive = true
-        
-        searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -55).isActive = true
-        searchButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 29).isActive = true
-        searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -29).isActive = true
-        searchButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
-    }
-    
-    @objc func selectingPictures(_ sender: UIBarButtonItem){
-        mMode = mMode == .view ? .select : .view
-        
-    }
-    
-    @objc func removingPictures(_ sender: UIBarButtonItem){
-        var deleteNeededIndexPath: [IndexPath] = []
-        for (key, value) in dictionarySelectedIndexPath{
-            if value {
-                deleteNeededIndexPath.append(key)
-            }
+            super.viewDidLoad()
+            view.backgroundColor = .white
+            backButton.addTarget(nil, action: #selector(backButtonTapped), for: .touchUpInside)
+            searchBar.searchTextField.addTarget(nil, action: #selector(editingSearchBar), for: .editingChanged)
+        searchButton.addTarget(nil, action: #selector(searchingPictures), for: .touchUpInside)
+            searchBar.delegate = self
+            addSubview()
+            addConstraints()
+            mMode = mMode == .view ? .select : .view
         }
-        
-        for i in deleteNeededIndexPath.sorted(by: { $0.item > $1.item }) {
-            items.remove(at: i.item)
-        }
-        
-        collectionView.deleteItems(at: deleteNeededIndexPath)
-        dictionarySelectedIndexPath.removeAll()
-        
-    }
     
-    @objc func editingSearchBar(){
-        if searchBar.text == data.first {
-            searchCell.playerImage.image = UIImage(named: "figurinhavinicius")
-        } else if searchBar.text == data[3]{
-            collectionView.backgroundColor = .blue
-        } else if searchBar.text == data.last{
-            collectionView.backgroundColor = .yellow
-        } else {
-            collectionView.backgroundColor = .white
-        }
-        searchBar.reloadInputViews()
-
+       
+       func addSubview(){
+           view.addSubview(backButton)
+           view.addSubview(searchLabel)
+           view.addSubview(subtitleLabel)
+           view.addSubview(searchBar)
+           view.addSubview(collectionView)
+           view.addSubview(searchButton)
+       }
+       
+       func addConstraints(){
+           backButton.heightAnchor.constraint(equalToConstant: 25).isActive = true
+           backButton.widthAnchor.constraint(equalToConstant: 25).isActive = true
+           backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+           backButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 27).isActive = true
+           
+           searchLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+           searchLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 27).isActive = true
+           
+           subtitleLabel.topAnchor.constraint(equalTo: searchLabel.bottomAnchor, constant: 6).isActive = true
+           subtitleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 27).isActive = true
+           
+           searchBar.topAnchor.constraint(equalTo: subtitleLabel.bottomAnchor, constant: 30).isActive = true
+           searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 29).isActive = true
+           searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -29).isActive = true
+           
+           collectionView.topAnchor.constraint(equalTo: searchBar.bottomAnchor, constant: 26).isActive = true
+           collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
+           collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
+           collectionView.heightAnchor.constraint(equalToConstant: 350).isActive = true
+           
+           searchButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -55).isActive = true
+           searchButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 29).isActive = true
+           searchButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -29).isActive = true
+           searchButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+           
+       }
+       
+    @objc func searchingPictures(){
+        let callDetailSearch = SearchDetailsView()
+        callDetailSearch.modalPresentationStyle = .fullScreen
+        present(callDetailSearch, animated: false)
     }
-    
+       
+       @objc func editingSearchBar(){
+           let indexPath = IndexPath()
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? SearchCollectionCell
+           
+           if searchBar.text == data.first {
+               cell?.playerImage.backgroundColor = .green
+           } else if searchBar.text == data[3]{
+               collectionView.backgroundColor = .blue
+           } else if searchBar.text == data.last{
+               collectionView.backgroundColor = .yellow
+           } else {
+               collectionView.backgroundColor = .white
+           }
+           collectionView.reloadData()
+           
+       }
 }
 
 extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
-
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         19
@@ -222,14 +180,17 @@ extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource, UISe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as? SearchCollectionCell
+        
+        
         return cell ?? UICollectionViewCell()
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch mMode{
         case .view:
-            let item = items[indexPath.item]
+            let item = [indexPath.item]
         case .select:
             dictionarySelectedIndexPath[indexPath] = true
         }
@@ -240,6 +201,4 @@ extension SearchView: UICollectionViewDelegate, UICollectionViewDataSource, UISe
             dictionarySelectedIndexPath[indexPath] = false
         }
     }
-    
 }
-    

@@ -10,8 +10,7 @@ import UIKit
 extension HomeView{
     @objc func searchTapped(){
         let callSearch = SearchView()
-        let navSearch = UINavigationController(rootViewController: callSearch)
-        navSearch.modalPresentationStyle = .fullScreen
-        present(navSearch, animated: false)
+        callSearch.modalPresentationStyle = .fullScreen
+        present(callSearch, animated: false)
     }
 }

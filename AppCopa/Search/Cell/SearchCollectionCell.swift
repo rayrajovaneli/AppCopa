@@ -11,8 +11,8 @@ class SearchCollectionCell: UICollectionViewCell {
     
     var searchView = SearchView()
     
-    let playerImage: UIImageView = {
-        let image = UIImageView()
+    var playerImage: UIImageView = {
+        var image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.backgroundColor = UIColor(red: 0.525, green: 0.031, blue: 0.176, alpha: 1)
         return image
@@ -22,7 +22,7 @@ class SearchCollectionCell: UICollectionViewCell {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.image = UIImage(systemName: "checkmark.circle")
-        image.tintColor = .black
+        image.tintColor = .white
         image.isHidden = true
         return image
     }()
@@ -60,6 +60,8 @@ class SearchCollectionCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
     
     func addingConstraints(){
         playerImage.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
